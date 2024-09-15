@@ -1,0 +1,20 @@
+# .NET specific
+*.vshost.exe
+*.pdb
+*.suo
+*.user
+bin/
+obj/
+packages/
+
+# IDE specific (adjust if using a different IDE)
+*.csproj.user
+*.sln.dotSettings
+*.resharper.sln
+*.suo
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*~
