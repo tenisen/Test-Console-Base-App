@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleTestingGround.InventoryManagementSystem;
 using NLog;
 using NLog.Config;
 
@@ -19,18 +20,17 @@ public class Program
 
         // Following IMS original design.
 
-        
+        // /home/ten/Desktop/Dotnet MAUI/TestingGroundFolder/ConsoleTestingGround/Nlog.config
 
 
-        Console.WriteLine("*****Program Started*****");
+        Console.WriteLine("*****Program File Started*****");
 
-        // Enter Program Logic Here
+        // Program Logic Here.
 
-        // Load Config File for Logging Module
-        LogManager.Configuration = new XmlLoggingConfiguration("Nlog.config");
+        InventoryManagementSystem instance = new InventoryManagementSystem();
+        instance.StartProgram();
 
-
-        Console.WriteLine("*****Program Ended*****");
+        Console.WriteLine("*****Program File Ended*****");
 
     }
 }
