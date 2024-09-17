@@ -14,9 +14,10 @@ Version :
 */
 
 
-public interface ILogger<T> : ILogger<T> where T : class
+public interface ILogger
 {
-
+    void SetClassLogger(object classInstance);
+    
     void Log (string message, params object[] args);
 
     void Trace (string message, params object[] args);
@@ -25,7 +26,7 @@ public interface ILogger<T> : ILogger<T> where T : class
 
     void Debug (string message, params object[] args);
 
-    void Warning (string message, params object[] args);
+    void Warn (string message, params object[] args);
 
     void Fatal (string message, params object[] args);
 }

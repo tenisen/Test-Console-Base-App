@@ -3,8 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
+using NLog.Config;
 
 public class Program
 {
@@ -16,15 +19,21 @@ public class Program
 
         // Following IMS original design.
 
+        
+
+
         Console.WriteLine("*****Program Started*****");
-        Console.WriteLine("");
-        Console.WriteLine("Hello World!");
-        Console.WriteLine("");
+
+        // Enter Program Logic Here
+
+        // Load Config File for Logging Module
+        LogManager.Configuration = new XmlLoggingConfiguration("Nlog.config");
+
+
         Console.WriteLine("*****Program Ended*****");
 
     }
 }
-
 /*
     Module Required*****************************************************************************
 
