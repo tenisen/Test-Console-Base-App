@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingGroundFolder", "TestingGroundFolder", "{D88D940C-BC50-409B-8224-B2A3CCD9AEBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestingGround", "TestingGroundFolder\ConsoleTestingGround\ConsoleTestingGround.csproj", "{3825C7EC-3F76-41FE-A1B3-C60AC9C3E9F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestingGround", "ConsoleTestingGround.csproj", "{3825C7EC-3F76-41FE-A1B3-C60AC9C3E9F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
