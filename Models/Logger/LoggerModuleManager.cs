@@ -1,4 +1,4 @@
-namespace Logger;
+namespace LoggerModule;
 
 using System.Collections.Generic;
 

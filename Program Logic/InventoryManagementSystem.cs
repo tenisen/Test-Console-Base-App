@@ -4,7 +4,7 @@ namespace ConsoleTestingGround.InventoryManagementSystem;
 using System;
 
 // Module
-using Logger;
+using LoggerModule;
 
 public class InventoryManagementSystem
 {
@@ -80,3 +80,19 @@ public class InventoryManagementSystem
 
 
 }
+
+/*
+    Module Required*****************************************************************************
+
+    Logger ( Should be able to use for now.)
+
+    Data Base ( Link sqlite )
+
+    Functions ( Program Structure )
+
+    Login
+
+    Safety ( Backup )
+
+    ( FSM ?)
+*/

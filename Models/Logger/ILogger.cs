@@ -1,5 +1,5 @@
 // Copyright © 2024 Ten. All rights reserved.
-namespace Logger;
+namespace LoggerModule;
 
 /*
 
