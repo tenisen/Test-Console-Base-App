@@ -18,3 +18,6 @@ packages/
 *.log
 *.bak
 *~
+
+# MD Record File dont' save first.
+*.md
