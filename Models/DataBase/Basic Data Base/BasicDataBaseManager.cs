@@ -30,6 +30,16 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         }
     }
 
+    public int State
+    {
+        get
+        {
+            if(_databaseConnection.State == System.Data.ConnectionState.Open) return 1;
+
+            return 0;
+        }
+    }
+
 
     public BasicDataBase(string databaseName)
     {
@@ -44,11 +54,13 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
     // DB
     public virtual void CreateDatabase(string name)
     {
+        DatabaseName = name;
+
         // Create sqlite data base ( new data base)
         SqliteConnection connection = new SqliteConnection(
-            $"Data Source = {DatabaseName};" +
-            "New = True;" +
-            "Compress = True;"
+            $"Data Source = {DatabaseName};"
+            //  + "New = True;" +
+            // "Compress = True;"
         );
 
         try
@@ -133,13 +145,13 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         {
             if (x.Value == DataBaseColumnEnum.NULL)
             {
-                command_text += $"\n{x.Key} TEXT ,";
+                command_text += $"{x.Key} TEXT ,";
             }
             else
-                command_text += $"\n{x.Key} {x.Value.ToString()} NOT NULL,";
+                command_text += $"{x.Key} {x.Value.ToString()} NOT NULL,";
         }
 
-        command_text.Remove(command_text.Length - 1, 1);
+        command_text = command_text.Remove(command_text.Length - 1, 1);
         command_text += ");";
 
         command.CommandText = command_text;
@@ -282,7 +294,7 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         return record;
     }
 
-    Dictionary<string, object>[] QueryRecords(string tableName,string whereClause)
+    public Dictionary<string, object>[] QueryRecords(string tableName,string whereClause)
     {
         // Query Records
         var command = SafeConnection.CreateCommand();
