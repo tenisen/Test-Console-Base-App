@@ -1,6 +1,6 @@
 namespace DatabaseModule;
 
-public interface IRecordManager<T> 
+public interface IRecordManager
 {
     void InsertRecord(string tableName, Dictionary<string, object> recordData); // Column name and value
     
@@ -8,8 +8,7 @@ public interface IRecordManager<T>
     
     void DeleteRecord(string tableName, int recordId);
     
-    T GetRecord(string tableName, int recordId);
+    Dictionary<string, object> GetRecord(string tableName, int recordId);
     
-    IEnumerable<T> QueryRecords(string tableName, string whereClause, Dictionary<string, object> parameters);
-
+    Dictionary<string, object>[] QueryRecords(string tableName,string whereClause);
 }
