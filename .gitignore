@@ -21,3 +21,6 @@ packages/
 
 # MD Record File dont' save first.
 *.md
+
+# Puml documentation File don't save first
+*.puml
