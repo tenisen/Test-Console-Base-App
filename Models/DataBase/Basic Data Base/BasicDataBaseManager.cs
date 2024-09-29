@@ -2,6 +2,7 @@ namespace DatabaseModule;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Microsoft.Data.Sqlite;
 
 /*
@@ -10,7 +11,7 @@ using Microsoft.Data.Sqlite;
     Online SQL database might required another structure.
 */
 
-public class BasicDataBase : IDataBaseManager, ITableManager
+public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
 {
     private SqliteConnection _databaseConnection = new SqliteConnection();
     
@@ -190,6 +191,124 @@ public class BasicDataBase : IDataBaseManager, ITableManager
         }
 
         return tables;
+    }
+
+    //Record manager
+    public void InsertRecord(string tableName, Dictionary<string, object> recordData)
+    {
+        // Insert Record
+        var command = SafeConnection.CreateCommand();
+
+        string command_text =
+            $"INSERT INTO {tableName} (";
+
+        foreach (var x in recordData)
+        {
+            command_text += $"\n{x.Key},";
+        }
+
+        command_text.Remove(command_text.Length - 1, 1);
+        command_text += ") VALUES (";
+
+        foreach (var x in recordData)
+        {
+            command_text += $"\n'{x.Value}',";
+        }
+
+        command_text.Remove(command_text.Length - 1, 1);
+        command_text += ");";
+
+        command.CommandText = command_text;
+
+        command.ExecuteNonQuery();
+    }
+
+    public void UpdateRecord(string tableName, int recordId, Dictionary<string, object> recordData)
+    {
+        // Update Record
+        var command = SafeConnection.CreateCommand();
+
+        string command_text =
+            $"UPDATE {tableName} SET ";
+
+        foreach (var x in recordData)
+        {
+            command_text += $"\n{x.Key} = '{x.Value}',";
+        }
+
+        command_text.Remove(command_text.Length - 1, 1);
+        command_text += $" WHERE _id = {recordId};";
+
+        command.CommandText = command_text;
+
+        command.ExecuteNonQuery();
+    }
+
+    public void DeleteRecord(string tableName, int recordId)
+    {
+        // Delete Record
+        var command = SafeConnection.CreateCommand();
+
+        string command_text =
+            $"DELETE FROM {tableName} WHERE _id = {recordId};";
+
+        command.CommandText = command_text;
+
+        command.ExecuteNonQuery();
+    }
+
+    public Dictionary<string,object> GetRecord(string tableName,int recordId)
+    {
+        // Get Record
+        var command = SafeConnection.CreateCommand();
+
+        string command_text =
+            $"SELECT * FROM {tableName} WHERE _id = {recordId};";
+
+        command.CommandText = command_text;
+
+        var reader = command.ExecuteReader();
+
+        Dictionary<string, object> record = new Dictionary<string, object>();
+
+        while (reader.Read())
+        {
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                record[reader.GetName(i)] = reader.GetValue(i);
+            }
+        }
+
+        return record;
+    }
+
+    Dictionary<string, object>[] QueryRecords(string tableName,string whereClause)
+    {
+        // Query Records
+        var command = SafeConnection.CreateCommand();
+
+        string command_text =
+            $"SELECT * FROM {tableName} WHERE {whereClause};";
+
+        command.CommandText = command_text;
+
+        var reader = command.ExecuteReader();
+
+        List<Dictionary<string, object>> records = new List<Dictionary<string, object>>();
+
+        while (reader.Read())
+        {
+            Dictionary<string, object> record = new Dictionary<string, object>();
+
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                record[reader.GetName(i)] = reader.GetValue(i);
+            }
+
+            records.Add(record);
+        }
+
+        return records.ToArray();
     }
 }
 
