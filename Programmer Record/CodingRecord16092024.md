@@ -24,7 +24,7 @@ NLog Configuration
 
 Keep track of our current module.
 
-## Logging Module (namespace Logging )
+## Logging Module (namespace LoggerModule)
 
 Currently Related Class :
 
@@ -32,3 +32,24 @@ Currently Related Class :
 - ILogger
 - LoggerBaseClass
  
+## Database Module (namepsace DatabaseModule)
+
+### Currently Related Class : 
+
+> Interface
+- IDataBaseManager
+- ITableManager
+- IRecordManager
+
+> Basic implementation for above interface
+- BasicDataBaseManager
+
+> Enum (for sqlite column type control (incomplete, still can improve))
+- DataBaseColumn
+
+### Not Yet Used : 
+
+DataBaseAttribute
+    
+    Future would like to implement this like a serializer tag, which could use and automatically create table and save into sqlite/SQL but future might need another control class with generic type T & Reflection to do this.
+

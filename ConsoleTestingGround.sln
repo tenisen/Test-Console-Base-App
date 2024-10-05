@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestingGroundFolder", "Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestingGround", "ConsoleTestingGround.csproj", "{3825C7EC-3F76-41FE-A1B3-C60AC9C3E9F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestingUnitTest", "..\TestingGroundUnitTest\ConsoleTestingUnitTest\ConsoleTestingUnitTest.csproj", "{C25B2835-87C1-4342-B05B-245F61CE7FCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{3825C7EC-3F76-41FE-A1B3-C60AC9C3E9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3825C7EC-3F76-41FE-A1B3-C60AC9C3E9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3825C7EC-3F76-41FE-A1B3-C60AC9C3E9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C25B2835-87C1-4342-B05B-245F61CE7FCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C25B2835-87C1-4342-B05B-245F61CE7FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C25B2835-87C1-4342-B05B-245F61CE7FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C25B2835-87C1-4342-B05B-245F61CE7FCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3825C7EC-3F76-41FE-A1B3-C60AC9C3E9F8} = {D88D940C-BC50-409B-8224-B2A3CCD9AEBC}

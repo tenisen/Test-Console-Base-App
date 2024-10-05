@@ -51,8 +51,8 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         // Create dummy class.
     }
 
-    // DB
-    public virtual void CreateDatabase(string name)
+    #region Data Base
+    public virtual void CreateDatabase(string name = "")
     {
         DatabaseName = name;
 
@@ -116,8 +116,13 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         return false;
     }
 
-    public void ConnectDataBase(string name)
+    public void ConnectDataBase(string name = "")
     {
+        if(!string.IsNullOrEmpty(name))
+        {
+            DatabaseName = name;
+        }
+
         if (_databaseConnection != null)
         {
             if (_databaseConnection.State != System.Data.ConnectionState.Closed)
@@ -131,7 +136,9 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         _databaseConnection.Open();
     }
 
-    // Table
+    #endregion
+
+    #region Data Base Table
     public virtual void AddTable(string tableName, Dictionary<string, DataBaseColumnEnum> values)
     {
         // Add Table
@@ -205,7 +212,9 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         return tables;
     }
 
-    //Record manager
+    #endregion
+
+    #region Record Manager
     public void InsertRecord(string tableName, Dictionary<string, object> recordData)
     {
         // Insert Record
@@ -216,18 +225,18 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
 
         foreach (var x in recordData)
         {
-            command_text += $"\n{x.Key},";
+            command_text += $"{x.Key},";
         }
 
-        command_text.Remove(command_text.Length - 1, 1);
+        command_text = command_text.Remove(command_text.Length - 1, 1);
         command_text += ") VALUES (";
 
         foreach (var x in recordData)
         {
-            command_text += $"\n'{x.Value}',";
+            command_text += $"'{x.Value}',";
         }
 
-        command_text.Remove(command_text.Length - 1, 1);
+        command_text = command_text.Remove(command_text.Length - 1, 1);
         command_text += ");";
 
         command.CommandText = command_text;
@@ -245,10 +254,10 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
 
         foreach (var x in recordData)
         {
-            command_text += $"\n{x.Key} = '{x.Value}',";
+            command_text += $"{x.Key} = '{x.Value}',";
         }
 
-        command_text.Remove(command_text.Length - 1, 1);
+        command_text = command_text.Remove(command_text.Length - 1, 1);
         command_text += $" WHERE _id = {recordId};";
 
         command.CommandText = command_text;
@@ -294,13 +303,22 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
         return record;
     }
 
-    public Dictionary<string, object>[] QueryRecords(string tableName,string whereClause)
+    public Dictionary<string, object>[] QueryRecords(string tableName,string whereClause = "")
     {
         // Query Records
         var command = SafeConnection.CreateCommand();
 
-        string command_text =
-            $"SELECT * FROM {tableName} WHERE {whereClause};";
+        string command_text = "";
+
+        if(String.IsNullOrEmpty(whereClause))
+        {
+            command_text = $"SELECT * FROM {tableName}";
+        }
+        else
+        {
+            command_text = 
+                $"SELECT * FROM {tableName} WHERE {whereClause};";
+        }
 
         command.CommandText = command_text;
 
@@ -322,6 +340,8 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
 
         return records.ToArray();
     }
+
+    #endregion
 }
 
 // Found a idea bug, if we were to create 1 instance class assigned to 1 db.

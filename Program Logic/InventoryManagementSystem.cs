@@ -87,6 +87,7 @@ public class InventoryManagementSystem
     Logger ( Should be able to use for now.)
 
     Data Base ( Link sqlite )
+    - Serializer to save settings
 
     Functions ( Program Structure )
 

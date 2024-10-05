@@ -1,4 +1,4 @@
-﻿namespace TestingGround;
+﻿namespace ConsoleTestingGround;
 
 using System;
 using System.Collections.Generic;
@@ -7,6 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleTestingGround.InventoryManagementSystem;
+using DatabaseModule;
 using NLog;
 using NLog.Config;
 
@@ -25,15 +26,31 @@ public class Program
 
         Console.WriteLine("*****Program File Started*****");
 
+
+        Console.WriteLine(abd.a1.ToString());
+        Console.WriteLine(abd.v1.ToString());
+        Console.WriteLine(abd.B2.ToString());
+
         // Program Logic Here.
 
-        InventoryManagementSystem instance = new InventoryManagementSystem();
-        instance.StartProgram();
+        // BasicDataBase basicDataBase = new BasicDataBase("test");
+        
+
+        // InventoryManagementSystem instance = new InventoryManagementSystem();
+        // instance.StartProgram();
 
         Console.WriteLine("*****Program File Ended*****");
 
     }
 }
+
+enum abd
+{
+    a1,
+    v1,
+    B2
+}
+
 /*
     Module Required*****************************************************************************
 
