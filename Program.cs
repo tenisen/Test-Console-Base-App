@@ -25,12 +25,6 @@ public class Program
 
 
         Console.WriteLine("*****Program File Started*****");
-
-
-        Console.WriteLine(abd.a1.ToString());
-        Console.WriteLine(abd.v1.ToString());
-        Console.WriteLine(abd.B2.ToString());
-
         // Program Logic Here.
 
         // BasicDataBase basicDataBase = new BasicDataBase("test");
@@ -44,21 +38,14 @@ public class Program
     }
 }
 
-enum abd
-{
-    a1,
-    v1,
-    B2
-}
-
 /*
     Module Required*****************************************************************************
 
-    Logger
+    Logger - Done
 
-    Data Base
+    Data Base - Done
 
-    Functions
+    Functions - ? 
 
     Login
 

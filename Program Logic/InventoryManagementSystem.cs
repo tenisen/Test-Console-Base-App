@@ -88,12 +88,27 @@ public class InventoryManagementSystem
 
     Data Base ( Link sqlite )
     - Serializer to save settings
+    - This was not implemented in a finite state machine structure.
+    - This is a basic database structure.
+    - Basic Database done, serializer attribute not yet.
 
     Functions ( Program Structure )
+    - How to maintain these function
+    - What function I Need ?
+    - This one need to decide with flow.
 
     Login
+    - How to control login ?
 
     Safety ( Backup )
+    - How to backup ?
 
-    ( FSM ?)
+    ( FSM ?) ( Status method )
+
+    21/12/2024
+    
+    Further Record
+
+    - Data Driven Architecture
+
 */
