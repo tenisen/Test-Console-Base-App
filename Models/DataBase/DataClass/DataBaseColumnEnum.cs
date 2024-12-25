@@ -7,8 +7,15 @@ public enum DataBaseColumnEnum
     INTEGER,
     REAL,
     BLOB,
-    NULL 
+    NUMERIC 
 }
+
+/*
+    This enum used in DataBaseColumn class.
+
+    The sql version is a little but more complex,
+    currently we use this sqlite lite version first.
+*/
 
 // Understand NULL as TEXT NULL first.
 // If we need NULL integer or others at one point.

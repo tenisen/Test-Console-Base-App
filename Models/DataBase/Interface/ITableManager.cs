@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 interface  ITableManager
 {
-    void AddTable(string tableName, Dictionary<string, DataBaseColumnEnum> values);
-    
+    void AddTable(string tableName, List<DataBaseColumn> values);
+
     void DeleteTable(string tableName);
     
     // void Update(string tableName, string[] values);

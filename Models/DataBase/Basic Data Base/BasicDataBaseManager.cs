@@ -48,6 +48,7 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
 
     public BasicDataBase()
     {
+        DatabaseName = "";
         // Create dummy class.
     }
 
@@ -139,23 +140,40 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
     #endregion
 
     #region Data Base Table
-    public virtual void AddTable(string tableName, Dictionary<string, DataBaseColumnEnum> values)
+    
+    public virtual void AddTable(string tableName, List<DataBaseColumn> values)
     {
         // Add Table
         var command = SafeConnection.CreateCommand();
 
         string command_text =
-            $"CREATE TABLE {tableName} (" +
-            "_id INTEGER PRIMARY KEY AUTOINCREMENT, ";
+            $"CREATE TABLE {tableName} (" ; // +
+            // "_id INTEGER PRIMARY KEY AUTOINCREMENT, ";
 
         foreach (var x in values)
         {
-            if (x.Value == DataBaseColumnEnum.NULL)
+            command_text += $"{x.Name} {x.DataBaseDataType.ToString()} ";
+
+            if(x.PrimaryKey)
             {
-                command_text += $"{x.Key} TEXT ,";
+                command_text += "PRIMARY KEY ";
             }
-            else
-                command_text += $"{x.Key} {x.Value.ToString()} NOT NULL,";
+            else if(!x.NullAble)
+            {
+                command_text += "NOT NULL ";
+            }
+
+            if(x.AutoIncrement)
+            {
+                command_text += "AUTOINCREMENT ";
+            }
+
+            if(x.Default && x.DefaultValue != null)
+            {
+                command_text += $"DEFAULT {x.DefaultValue.ToString()} ";
+            }
+
+            command_text += ",";
         }
 
         command_text = command_text.Remove(command_text.Length - 1, 1);
@@ -163,8 +181,11 @@ public class BasicDataBase : IDataBaseManager, ITableManager, IRecordManager
 
         command.CommandText = command_text;
 
+        Console.WriteLine(command_text);
+
         command.ExecuteNonQuery();
     }
+
 
     public virtual void DeleteTable(string tableName)
     {
